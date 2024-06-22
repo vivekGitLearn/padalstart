@@ -24,12 +24,13 @@ function UpdateTaskModal({ todo, onClose, onUpdate }) {
 
             // If the request is successful
             console.log('Update successful:', response.data);
+            window.location.reload();
             onClose();
         } catch (error) {
             console.error('Update error: ', error);
         }
     };
-    
+
 
     return (
         <div className='fixed inset-0 bg-gray-600 bg-opacity-75 flex justify-center items-center'>
