@@ -124,7 +124,7 @@ def update_todo_list(todo_id: int, todo: TodoListUpdate, db: Session = Depends(g
     db_todo.title = todo.title
     db_todo.description = todo.description
     db_todo.deadline = todo.deadline
-    db_todo.status_id = todo.status_id
+    # db_todo.status_id = todo.status_id
     db.commit()
     db.refresh(db_todo)
     return db_todo
