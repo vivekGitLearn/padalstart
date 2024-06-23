@@ -149,3 +149,8 @@ def delete_todo_list(todo_id: int, db: Session = Depends(get_db)):
     db.delete(db_todo)
     db.commit()
     return db_todo
+
+
+if __name__ == '__main__':
+    import uvicorn
+    uvicorn.run(app)
