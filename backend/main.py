@@ -11,11 +11,13 @@ Base.metadata.create_all(bind=engine)
 
 app = FastAPI()
 
-origins = [
-    "http://localhost",
-    "http://localhost:8080",
-    "http://localhost:3000",
-]
+origins = ["*"]
+# origins = [
+#     "http://localhost",
+#     "http://localhost:8080",
+#     "http://localhost:3000",
+#     "https://padalstart.vercel.app",
+# ]
 
 app.add_middleware(
     CORSMiddleware,
