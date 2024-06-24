@@ -15,7 +15,7 @@ function UpdateTaskModal({ todo, onClose, onUpdate }) {
             console.log(title);
             console.log(description);
             console.log(deadline);
-            const response = axios.put(`http://192.46.208.36/todo_list/${updatedTodo.id}`, {
+            const response = axios.put(`/todo_list/${updatedTodo.id}`, {
                 title: title,
                 description: description,
                 deadline: deadline,
