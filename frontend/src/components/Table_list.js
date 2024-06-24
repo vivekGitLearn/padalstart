@@ -11,7 +11,7 @@ function TableList() {
     useEffect(() => {
         const fetchTodos = async () => {
             try {
-                const response = await fetch('http://localhost:8000/todo_list/');
+                const response = await fetch('http://192.46.208.36/todo_list/');
                 if (!response.ok) {
                     throw new Error('Network response was not ok');
                 }
@@ -27,7 +27,7 @@ function TableList() {
 
     const updateStatus = async (id, currentStatus) => {
         try {
-            const response = await fetch(`http://localhost:8000/status_update/${id}?status_update=${!currentStatus}`, {
+            const response = await fetch(`http://192.46.208.36/status_update/${id}?status_update=${!currentStatus}`, {
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json',
@@ -47,7 +47,7 @@ function TableList() {
     const del = async id => {
         if (window.confirm('Are you sure to delete this task?')) {
             try {
-                await fetch(`http://localhost:8000/todo_list/${id}`, {
+                await fetch(`http://192.46.208.36/todo_list/${id}`, {
                     method: 'DELETE'
                 });
                 setTodos(todos.filter(todo => todo.id !== id));
@@ -70,7 +70,7 @@ function TableList() {
 
     const handleUpdateTodo = async (updatedTodo) => {
         try {
-            const response = await fetch(`http://localhost:8000/todo_list/${updatedTodo.id}`, {
+            const response = await fetch(`http://192.46.208.36/todo_list/${updatedTodo.id}`, {
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json',
