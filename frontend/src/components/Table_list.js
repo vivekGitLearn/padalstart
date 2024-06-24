@@ -22,6 +22,58 @@ function TableList() {
             }
         };
 
+        const updateStatus = async (id, currentStatus) => {
+            try {
+                const response = await fetch(`/api/status_update/${id}?status_update=${!currentStatus}`, {
+                    method: 'PUT',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    }
+                });
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                const updatedTodo = await response.json();
+                setTodos(todos.map(todo => (todo.id === id ? updatedTodo : todo)));
+            } catch (error) {
+                console.error('Update error: ', error);
+            }
+        };
+
+        const del = async id => {
+            if (window.confirm('Are you sure to delete this task?')) {
+                try {
+                    await fetch(`/api/todo_list/${id}`, {
+                        method: 'DELETE'
+                    });
+                    setTodos(todos.filter(todo => todo.id !== id));
+                } catch (error) {
+                    console.error('Delete error: ', error);
+                }
+            }
+        };
+
+        const handleUpdateTodo = async (updatedTodo) => {
+            try {
+                const response = await fetch(`/api/todo_list/${updatedTodo.id}`, {
+                    method: 'PUT',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(updatedTodo),
+                });
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                const updatedTodoFromServer = await response.json();
+                setTodos(todos.map(todo => (todo.id === updatedTodoFromServer.id ? updatedTodoFromServer : todo)));
+                closeUpdateModal();
+            } catch (error) {
+                console.error('Update error: ', error);
+            }
+        };
+
+
         fetchTodos();
     }, []);
 
