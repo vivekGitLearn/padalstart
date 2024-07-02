@@ -20,7 +20,7 @@ function Add_task() {
         console.log('Description:', description);
         console.log('Deadline:', deadline);
         try {
-            const response = axios.post('/todo_list/', {
+            const response = axios.post('http://localhost:8000/todo_list/', {
                 title: title,
                 description: description,
                 deadline: deadline
