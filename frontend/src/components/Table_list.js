@@ -24,7 +24,7 @@ function TableList() {
 
         const updateStatus = async (id, currentStatus) => {
             try {
-                const response = await fetch(`/api/status_update/${id}?status_update=${!currentStatus}`, {
+                const response = await fetch(`/status_update/${id}?status_update=${!currentStatus}`, {
                     method: 'PUT',
                     headers: {
                         'Content-Type': 'application/json',
